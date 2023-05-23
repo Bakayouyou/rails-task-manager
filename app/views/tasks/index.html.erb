@@ -1,0 +1,12 @@
+<h1>Task</h1>
+<% @tasks.each do |task| %>
+<div>
+<ul class="list-group">
+<li class="list-group-item">
+    <%= link_to task.title, task_path(task[:id]), :class => "btn btn-outline-primary"%>
+    <%= link_to "go edit", edit_task_path(task[:id]),:class => "btn btn-outline-warning" %>
+</li>
+</ul>
+</div>
+<% end %>
+    <%= link_to "go create", new_tasks_path, :class => "btn btn-outline-danger" %>
