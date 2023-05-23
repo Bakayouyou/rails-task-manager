@@ -1,6 +1,12 @@
-<h1 style="text-align: center">Task Selected</h1>
+<h1 style="text-align: center; color:blue">Task Selected</h1>
 
-<h2 style="text-align: center"><%= @task.title %></h2>
-<h2 style="text-align: center"><%= @task.details %></h2>
-<i class="fa-regular fa-circle-check"></i>
-<%= link_to "Task List", tasks_path %>
+<h2 style="text-align: center; color:red"><%= @task.title %></h2>
+<h2 style="text-align: center; color:orange"><%= @task.details %></h2>
+<% if @task.completed === true %>
+<i class="fa-regular fa-circle-check" style="text-align: center; color:green"></i>
+<% else %>
+<i class="fa-solid fa-circle-xmark" style="text-align: center; color:red"></i>
+<% end %>
+<div>
+<%= link_to "Task List", tasks_path, :class => "btn btn-outline-danger" %>
+</div>
