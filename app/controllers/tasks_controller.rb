@@ -7,10 +7,16 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+
+  end
+
   def create
     @task = Task.new(task_params)
     @task.save
-    redirect_to tasks_path(@tasks)
+    redirect_to tasks_path(@tasks), status: :see_other
   end
 
   def edit
