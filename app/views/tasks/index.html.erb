@@ -1,16 +1,15 @@
+
 <h1 style="text-align: center">Task</h1>
 <% @tasks.each do |task| %>
 <div class="container" style="text-align: center">
 <ul class="list-group">
-<li class="list-group-item">
+<li class="list-group-item"  data-hello-target = "click">
     <%= link_to task.title, task_path(task[:id]), :class => "btn btn-outline-primary"%>
-    <%= link_to "go edit", edit_task_path(task[:id]),:class => "btn btn-outline-warning" %>
-    <%= link_to "Delete",
-  task_path(task[:id]),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
+ <%= link_to "go edit", edit_task_path(task), data: { turbo_frame: "modal" }, class: "btn btn-outline-warning" %>
+
+    <%= link_to "Delete", task_path(task[:id]), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 </li>
 </ul>
 </div>
 <% end %>
-    <%= link_to "go create", new_tasks_path, :class => "btn btn-outline-danger" %>
+    <%= link_to "go create", new_task_path, :class => "btn btn-outline-danger", data: { turbo_frame: "modal" } %>

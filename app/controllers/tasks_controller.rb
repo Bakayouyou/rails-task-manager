@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+
   def index
     @tasks = Task.all
   end
@@ -10,6 +11,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    redirect_to tasks_path(@tasks), status: :see_other
 
   end
 
@@ -24,14 +26,18 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find_by(id: params[:id])
+    @task.update(task_params)
+    redirect_to tasks_path
+
     # raise
-    @task = Task.find(params[:id])
-    # @task.update(task_params)
-    if @task.update(task_params)
-      redirect_to tasks_path
-    else
-      render :edit_task
-    end
+    # @task = Task.find(params[:id])
+    # # @task.update(task_params)
+    # if @task.update(task_params)
+    #   redirect_to tasks_path
+    # else
+    #   render :edit_task
+    # end
   end
 
   def show
